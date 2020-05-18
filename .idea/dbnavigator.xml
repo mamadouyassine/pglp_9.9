@@ -67,9 +67,9 @@
           <config-type value="CUSTOM" />
           <database-version value="9999.0" />
           <driver-source value="EXTERNAL" />
-          <driver-library value="C:\Derby-10.14.2.0\lib\derby.jar" />
+          <driver-library value="C:\Derby-10.14.2.0\lib" />
           <driver value="org.apache.derby.jdbc.EmbeddedDriver" />
-          <url value="jdbc:derby//localhost:1527/C:\Users\utilisateur\Desktop\Cours\PROGRAMMATION\TP\pgl9.9\FigureDB" />
+          <url value="jdbc:derby//localhost:1527" />
           <type value="NONE" />
           <user value="" />
           <deprecated-pwd value="" />
