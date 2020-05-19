@@ -1,4 +1,8 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.Command;
+import fr.uvsq.pglp.Connection.GetConnection;
+import fr.uvsq.pglp.DaoJbc.*;
+import fr.uvsq.pglp.FormeGraphique.*;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -39,9 +43,9 @@ public class MoveCommand implements Command {
             CercleDaoJDBC cercle = (CercleDaoJDBC)
                     fdj.getCercleDao();
             cercle.update((Cercle) form);
-        } else if (form.getClass() == Carre.class) {
-            CarreDaoJDBC carre = (CarreDaoJDBC) fdj.getCarreDao();
-            carre.update((Carre) form);
+        } else if (form.getClass() == Square.class) {
+            SquareDaoJDBC carre = (SquareDaoJDBC) fdj.getSquareDao();
+            carre.update((Square) form);
         } else if (form.getClass() == Rectangle.class) {
             RectangleDaoJDBC rectangle = (RectangleDaoJDBC)
                     fdj.getRectangleDao();

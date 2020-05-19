@@ -1,4 +1,9 @@
 package fr.uvsq.pglp;
+import fr.uvsq.pglp.Command.*;
+import fr.uvsq.pglp.Connection.GetConnection;
+import fr.uvsq.pglp.DaoJbc.*;
+import fr.uvsq.pglp.FormeGraphique.*;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,13 +23,12 @@ public class DrawingTUI {
                     split2[1].length() - 1);
             String[] split3 = split2[1].split(",");
             if (split3.length == trois) {
-                String position = split3[0].concat(",")
+                String point = split3[0].concat(",")
                         .concat(split3[1]);
                 try {
-                    Position p = new Position(position);
+                    Point p = new Point(point);
                     int rayon = Integer.parseInt(split3[2]);
-                    Cercle c = new Cercle(split[0], p,
-                            rayon);
+                    Cercle c = new Cercle(split[0], p, rayon);
                     return c;
                 } catch (Exception e) {
                     System.err.println("Argument(s) invalide(s)");
@@ -59,10 +63,10 @@ public class DrawingTUI {
                 String position = split3[0].concat(",")
                         .concat(split3[1]);
                 try {
-                    Position p = new Position(position);
+                    Point p = new Point(position);
                     int longueur = Integer
                             .parseInt(split3[2]);
-                    Carre c = new Carre(split[0], p,
+                    Square c = new Square(split[0], p,
                             longueur);
                     return c;
                 } catch (Exception e) {
@@ -99,7 +103,7 @@ public class DrawingTUI {
                 String position = split3[0].concat(",")
                         .concat(split3[1]);
                 try {
-                    Position p = new Position(position);
+                    Point p = new Point (position);
                     int longueur = Integer
                             .parseInt(split3[2]);
                     int hauteur = Integer
@@ -147,11 +151,10 @@ public class DrawingTUI {
                 String position3 = split3[quatre].concat(",")
                         .concat(split3[cinq]);
                 try {
-                    Position p = new Position(position);
-                    Position p2 = new Position(position2);
-                    Position p3 = new Position(position3);
-                    Triangle t = new Triangle(split[0],
-                            p, p2, p3);
+                    Point p = new Point (position);
+                    Point p2 = new Point (position2);
+                    Point p3 = new Point(position3);
+                    Triangle t = new Triangle(split[0], p, p2, p3);
                     return t;
                 } catch (Exception e) {
                     System.err.println("Argument(s) invalide(s)");
@@ -177,7 +180,7 @@ public class DrawingTUI {
         Connection c = GetConnection.createBase();
         FactoryDaoJDBC fdj = new FactoryDaoJDBC(c);
         CercleDaoJDBC cercledj = (CercleDaoJDBC) fdj.getCercleDao();
-        CarreDaoJDBC carredj = (CarreDaoJDBC) fdj.getCarreDao();
+        SquareDaoJDBC carredj = (SquareDaoJDBC) fdj.getSquareDao();
         RectangleDaoJDBC rdj = (RectangleDaoJDBC) fdj.getRectangleDao();
         TriangleDaoJDBC tdj = (TriangleDaoJDBC) fdj.getTriangleDao();
         GroupeDaoJDBC gdj = (GroupeDaoJDBC) fdj.getGroupeDao();
@@ -253,10 +256,9 @@ public class DrawingTUI {
             split[1] = split[1].substring(1, split[1].length() - 1);
             String[] split2 = split[1].split(",");
             if (split2.length == trois) {
-                String position = split2[1].concat(",")
-                        .concat(split2[2]);
+                String point = split2[1].concat(",").concat(split2[2]);
                 try {
-                    Position p = new Position(position);
+                    Point p = new Point (point);
                     String nom = split2[0];
                     Forme f = findAll(nom);
                     if (f != null) {
@@ -269,8 +271,7 @@ public class DrawingTUI {
                                 + "invalide");
                     }
                 } catch (Exception e) {
-                    System.err.println("Position "
-                            + "invalide");
+                    System.err.println("Position " + "invalide");
                     System.err.println("Commande "
                             + "invalide");
                 }
@@ -328,8 +329,8 @@ public class DrawingTUI {
                 fdj.getGroupeDao();
         CercleDaoJDBC cercle = (CercleDaoJDBC)
                 fdj.getCercleDao();
-        CarreDaoJDBC carre = (CarreDaoJDBC)
-                fdj.getCarreDao();
+        SquareDaoJDBC square = (SquareDaoJDBC)
+                fdj.getSquareDao();
         RectangleDaoJDBC rectangle = (RectangleDaoJDBC)
                 fdj.getRectangleDao();
         TriangleDaoJDBC triangle = (TriangleDaoJDBC)
@@ -337,7 +338,7 @@ public class DrawingTUI {
         ArrayList<Forme> f = new ArrayList<Forme>();
         f.addAll(groupe.findAll());
         f.addAll(cercle.findAll());
-        f.addAll(carre.findAll());
+        f.addAll(square.findAll());
         f.addAll(rectangle.findAll());
         f.addAll(triangle.findAll());
         System.out.println("Dessin :");

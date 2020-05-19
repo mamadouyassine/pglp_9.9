@@ -1,4 +1,8 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.Command;
+import fr.uvsq.pglp.Connection.GetConnection;
+import fr.uvsq.pglp.DaoJbc.*;
+import fr.uvsq.pglp.FormeGraphique.*;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,9 +31,9 @@ public class DeleteCommand implements Command  {
                 CercleDaoJDBC cercle = (CercleDaoJDBC)
                         fdj.getCercleDao();
                 cercle.delete((Cercle) f);
-            } else if (f.getClass() == Carre.class) {
-                CarreDaoJDBC carre = (CarreDaoJDBC) fdj.getCarreDao();
-                carre.delete((Carre) f);
+            } else if (f.getClass() == Square.class) {
+                SquareDaoJDBC carre = (SquareDaoJDBC) fdj.getSquareDao();
+                carre.delete((Square) f);
             } else if (f.getClass() == Rectangle.class) {
                 RectangleDaoJDBC rectangle = (RectangleDaoJDBC)
                         fdj.getRectangleDao();

@@ -1,4 +1,8 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.Command;
+import fr.uvsq.pglp.Connection.GetConnection;
+import fr.uvsq.pglp.DaoJbc.*;
+import fr.uvsq.pglp.FormeGraphique.*;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -25,9 +29,9 @@ public class CreateCommand implements Command  {
             CercleDaoJDBC cercle = (CercleDaoJDBC)
                     fdj.getCercleDao();
             f = cercle.create((Cercle) form);
-        } else if (form.getClass() == Carre.class) {
-            CarreDaoJDBC carre = (CarreDaoJDBC) fdj.getCarreDao();
-            f = carre.create((Carre) form);
+        } else if (form.getClass() == Square.class) {
+            SquareDaoJDBC carre = (SquareDaoJDBC) fdj.getSquareDao();
+            f = carre.create((Square) form);
         } else if (form.getClass() == Rectangle.class) {
             RectangleDaoJDBC rectangle = (RectangleDaoJDBC)
                     fdj.getRectangleDao();
