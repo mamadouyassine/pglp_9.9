@@ -1,4 +1,4 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.FormeGraphique;
 
 public  abstract class Forme {
 

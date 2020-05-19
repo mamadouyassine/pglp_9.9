@@ -1,6 +1,6 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.FormeGraphique;
 
-public class Position {
+public class Point {
 
     /**
      Abscisse.
@@ -38,7 +38,7 @@ public class Position {
     /**
      * Constructeur par défaut.
      */
-    public Position() {
+    public Point() {
         x = 0;
         y = 0;
     }
@@ -46,7 +46,7 @@ public class Position {
      * Constructeur.
 
      */
-    public Position(final int absc, final int ord) {
+    public Point(final int absc, final int ord) {
         this.x = absc;
         this.y = ord;
     }
@@ -54,11 +54,11 @@ public class Position {
      * Constructeur.
 
      */
-    public Position(final String p) throws Exception {
-        String position = p + "";
-        if (position.startsWith("(") && position.endsWith(")")) {
-            position = position.substring(1, position.length() - 1);
-            String[] pos = position.split(",");
+    public Point(final String p) throws Exception {
+        String point = p + "";
+        if (point.startsWith("(") && point.endsWith(")")) {
+            point = point.substring(1, point.length() - 1);
+            String[] pos = point.split(",");
             if (pos.length == 2) {
                 this.x = Integer.parseInt(pos[0]);
                 this.y = Integer.parseInt(pos[1]);
@@ -80,9 +80,9 @@ public class Position {
         this.y += ord;
     }
     /**
-     * Clone la position.
+     *changer position la position.
      */
-    public Position clone() {
-        return new Position(this.x, this.y);
+    public Point clone() {
+        return new Point(this.x, this.y);
     }
 }

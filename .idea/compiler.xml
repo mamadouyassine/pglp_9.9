@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="pgl9.9" />
+        <module name="pglp_9.9" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="pgl9.9" target="1.7" />
+      <module name="pglp_9.9" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

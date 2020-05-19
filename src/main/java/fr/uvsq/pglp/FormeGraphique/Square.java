@@ -1,10 +1,10 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.FormeGraphique;
 
-public class Carre extends Forme{
+public class Square extends Forme{
     /**
      * La position du centre.
      */
-    private Position centre;
+    private Point centre;
     /**
      * La longueur d'un coté du carré.
      */
@@ -13,14 +13,14 @@ public class Carre extends Forme{
      * Getter du centre.
      * @return Le centre
      */
-    public Position getCentre() {
+    public Point getCentre() {
         return centre.clone();
     }
     /**
      * Setter du centre.
      * @param c La nouvelle Position du centre
      */
-    public void setCentre(final Position c) {
+    public void setCentre(final Point c) {
         this.centre = c.clone();
     }
     /**
@@ -50,7 +50,7 @@ public class Carre extends Forme{
      * @param l La longueur initiale
      * @throws Exception Longueur négative
      */
-    public Carre(final String n, final Position p, final int l)
+    public Square(final String n, final Point p, final int l)
             throws Exception {
         setNom(n);
         this.centre = p.clone();

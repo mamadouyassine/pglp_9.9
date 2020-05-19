@@ -1,30 +1,18 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.FormeGraphique;
 
 public class Rectangle extends Forme {
-    /**
-     * La position du centre.
-     */
-    private Position centre;
-    /**
-     * La longueur.
-     */
+
+    private Point centre;
+
     private int longueur;
-    /**
-     * La hauteur.
-     */
+
     private int hauteur;
-    /**
-     * Getter du centre.
-     * @return Le centre
-     */
-    public Position getCentre() {
+
+    public Point getCentre() {
         return centre.clone();
     }
-    /**
-     * Setter du centre.
-     * @param c La nouvelle Position du centre
-     */
-    public void setCentre(final Position c) {
+
+    public void setCentre(final Point c) {
         this.centre = c.clone();
     }
     /**
@@ -75,7 +63,7 @@ public class Rectangle extends Forme {
      * @param h La hauteur initiale
      * @throws Exception Arguments négatifs
      */
-    public Rectangle(final String n, final Position p, final int l,
+    public Rectangle(final String n, final Point p, final int l,
                      final int h) throws Exception {
         setNom(n);
         this.centre = p.clone();
