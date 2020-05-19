@@ -1,4 +1,7 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.DaoJbc;
+import fr.uvsq.pglp.FormeGraphique.*;
+import fr.uvsq.pglp.FormeGraphique.Groupe;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,10 +43,10 @@ public class GroupeDaoJDBC extends AbstractDao<Groupe> {
                     Cercle c = (Cercle) f;
                     CercleDaoJDBC cdj = (CercleDaoJDBC) fdj.getCercleDao();
                     cdj.create(c);
-                } else if (f.getClass() == Carre.class) {
-                    Carre c = (Carre) f;
-                    CarreDaoJDBC cdj =
-                            (CarreDaoJDBC) fdj.getCarreDao();
+                } else if (f.getClass() == Square.class) {
+                    Square c = (Square) f;
+                    SquareDaoJDBC cdj =
+                            (SquareDaoJDBC) fdj.getSquareDao();
                     cdj.create(c);
                 } else if (f.getClass() == Rectangle.class) {
                     Rectangle r = (Rectangle) f;

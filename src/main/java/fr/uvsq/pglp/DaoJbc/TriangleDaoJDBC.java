@@ -1,4 +1,7 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.DaoJbc;
+import fr.uvsq.pglp.FormeGraphique.Point;
+import fr.uvsq.pglp.FormeGraphique.Triangle;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,11 +72,11 @@ public class TriangleDaoJDBC extends AbstractDao<Triangle> {
             if (result.next()) {
                 t = new Triangle(
                         result.getString("Nom"),
-                        new Position(result.getInt("Sommet1_X"),
+                        new Point(result.getInt("Sommet1_X"),
                                 result.getInt("Sommet1_Y")),
-                        new Position(result.getInt("Sommet2_X"),
+                        new Point(result.getInt("Sommet2_X"),
                                 result.getInt("Sommet2_Y")),
-                        new Position(result.getInt("Sommet3_X"),
+                        new Point(result.getInt("Sommet3_X"),
                                 result.getInt("Sommet3_Y"))
                 );
             }

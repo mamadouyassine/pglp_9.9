@@ -1,23 +1,28 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.DaoJbc;
+import fr.uvsq.pglp.FormeGraphique.Point;
+import fr.uvsq.pglp.FormeGraphique.Square;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-public class CercleDaoJDBC extends AbstractDao<Cercle> {
+
+public class SquareDaoJDBC extends AbstractDao<Square> {
+
     /**
      * Constructeur.
      * @param c Le connecteur
      */
-    public CercleDaoJDBC(final Connection c) {
+    public SquareDaoJDBC(final Connection c) {
         this.connect = c;
     }
     /**
-     * Ajoute un Cercle.
-     * @param c Le Cercle a ajouter
+     * Ajoute un Carre.
+     * @param c Le Carre a ajouter
      */
     @Override
-    public Cercle create(final Cercle c) {
+    public Square create(final Square c) {
         try {
             final int un = 1;
             final int deux = 2;
@@ -29,42 +34,42 @@ public class CercleDaoJDBC extends AbstractDao<Cercle> {
             prepare.setString(un, c.getNom());
             int result = prepare.executeUpdate();
             prepare = connect.prepareStatement(
-                    "INSERT INTO Cercle (Nom,Centre_X,Centre_Y,"
-                            + "Rayon)"
+                    "INSERT INTO Carre (Nom,Centre_X,Centre_Y,"
+                            + "Longueur)"
                             + "VALUES (?,?,?,?)");
             prepare.setString(un, c.getNom());
             prepare.setInt(deux, c.getCentre().getX());
             prepare.setInt(trois, c.getCentre().getY());
-            prepare.setInt(quatre, c.getRayon());
+            prepare.setInt(quatre, c.getLongueur());
             result = prepare.executeUpdate();
             assert result == un;
-            System.out.println("Cercle créé");
+            System.out.println("Carre créé");
         } catch (SQLException e) {
             return null;
         }
         return c;
     }
     /**
-     * Retourne le cercle recherché.
-     * @param nom Le nom du cercle
-     * @return Le cercle trouvé
+     * Retourne le Carre recherché.
+     * @param nom Le nom du Carre
+     * @return Le Carre trouvé
      */
     @Override
-    public Cercle find(final String nom) {
-        Cercle c = null;
+    public Square find(final String nom) {
+        Square c = null;
         try {
             final int un = 1;
             PreparedStatement prepare = connect.prepareStatement(
-                    "SELECT * FROM Cercle WHERE Nom = ?");
+                    "SELECT * FROM Carre WHERE Nom = ?");
             prepare.setString(un, nom);
             ResultSet result = prepare.executeQuery();
             if (result.next()) {
                 try {
-                    c = new Cercle(
+                    c = new Square(
                             result.getString("Nom"),
-                            new Position(result.getInt("Centre_X"),
+                            new Point(result.getInt("Centre_X"),
                                     result.getInt("Centre_Y")),
-                            result.getInt("Rayon")
+                            result.getInt("Longueur")
                     );
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -78,32 +83,32 @@ public class CercleDaoJDBC extends AbstractDao<Cercle> {
         return c;
     }
     /**
-     * Retourne tous les Cercles.
-     * @return Les cercles trouvés
+     * Retourne tous les Carres.
+     * @return Les Carres trouvé
      */
     @Override
-    public ArrayList<Cercle> findAll() {
-        ArrayList<Cercle> c = new ArrayList<Cercle>();
+    public ArrayList<Square> findAll() {
+        ArrayList<Square> c = new ArrayList<Square>();
         try {
             PreparedStatement prepare = connect.prepareStatement(
-                    "SELECT Nom FROM Cercle");
+                    "SELECT Nom FROM Carre");
             ResultSet result = prepare.executeQuery();
             while (result.next()) {
                 c.add(find(result.getString("Nom")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return new ArrayList<Cercle>();
+            return new ArrayList<Square>();
         }
         return c;
     }
     /**
-     * Modifie un cercle.
-     * @param c Le cercle a modifier
+     * Modifie un Carre.
+     * @param c Le Carre a modifier
      */
     @Override
-    public Cercle update(final Cercle c) {
-        Cercle c2 = this.find(c.getNom());
+    public Square update(final Square c) {
+        Square c2 = this.find(c.getNom());
         if (c2 != null) {
             try {
                 final int un = 1;
@@ -111,15 +116,15 @@ public class CercleDaoJDBC extends AbstractDao<Cercle> {
                 final int trois = 3;
                 final int quatre = 4;
                 PreparedStatement prepare = connect.prepareStatement(
-                        "UPDATE Cercle SET Centre_X = ?,"
-                                + "Centre_Y = ?, Rayon = ? WHERE Nom = ?");
+                        "UPDATE Carre SET Centre_X = ?,"
+                                + "Centre_Y = ?, Longueur = ? WHERE Nom = ?");
                 prepare.setString(quatre, c.getNom());
                 prepare.setInt(un, c.getCentre().getX());
                 prepare.setInt(deux, c.getCentre().getY());
-                prepare.setInt(trois, c.getRayon());
+                prepare.setInt(trois, c.getLongueur());
                 int result = prepare.executeUpdate();
                 assert result == 1;
-                System.out.println("Cercle deplacé");
+                System.out.println("Carre deplacé");
             } catch (SQLException e) {
                 e.printStackTrace();
                 return c2;
@@ -130,16 +135,16 @@ public class CercleDaoJDBC extends AbstractDao<Cercle> {
         return c;
     }
     /**
-     * Retire un cercle.
-     * @param c Le cercle a retirer
+     * Retire un Carre.
+     * @param c Le Carre a retirer
      */
     @Override
-    public void delete(final Cercle c) {
+    public void delete(final Square c) {
         final int un = 1;
         try {
             GroupeFormeDaoJDBC.deleteFormeGroupe(connect, c.getNom());
             PreparedStatement prepare = connect.prepareStatement(
-                    "DELETE FROM Cercle WHERE Nom = ?");
+                    "DELETE FROM Carre WHERE Nom = ?");
             prepare.setString(1, c.getNom());
             int result = prepare.executeUpdate();
             prepare = connect.prepareStatement(
@@ -147,7 +152,7 @@ public class CercleDaoJDBC extends AbstractDao<Cercle> {
             prepare.setString(1, c.getNom());
             result = prepare.executeUpdate();
             assert result == un;
-            System.out.println("Cercle supprimé");
+            System.out.println("Carré supprimé");
         } catch (SQLException e) {
             e.printStackTrace();
         }

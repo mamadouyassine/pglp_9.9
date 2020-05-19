@@ -1,4 +1,7 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.DaoJbc;
+import fr.uvsq.pglp.FormeGraphique.Point;
+import fr.uvsq.pglp.FormeGraphique.Rectangle;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,7 +68,7 @@ public class RectangleDaoJDBC extends AbstractDao<Rectangle> {
                 try {
                     r = new Rectangle(
                             result.getString("Nom"),
-                            new Position(result.getInt("Centre_X"),
+                            new Point(result.getInt("Centre_X"),
                                     result.getInt("Centre_Y")),
                             result.getInt("Longueur"),
                             result.getInt("Hauteur")

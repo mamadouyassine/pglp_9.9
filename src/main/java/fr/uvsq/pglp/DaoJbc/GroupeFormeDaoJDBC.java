@@ -1,4 +1,6 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.DaoJbc;
+import fr.uvsq.pglp.FormeGraphique.Forme;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -79,7 +81,7 @@ public class GroupeFormeDaoJDBC {
             while (result.next()) {
                 FactoryDaoJDBC fdj = new FactoryDaoJDBC(connect);
                 CercleDaoJDBC cercledj = (CercleDaoJDBC) fdj.getCercleDao();
-                CarreDaoJDBC carredj = (CarreDaoJDBC) fdj.getCarreDao();
+                SquareDaoJDBC carredj = (SquareDaoJDBC) fdj.getSquareDao();
                 RectangleDaoJDBC rdj = (RectangleDaoJDBC) fdj.getRectangleDao();
                 TriangleDaoJDBC tdj = (TriangleDaoJDBC) fdj.getTriangleDao();
                 GroupeDaoJDBC gdj = (GroupeDaoJDBC) fdj.getGroupeDao();

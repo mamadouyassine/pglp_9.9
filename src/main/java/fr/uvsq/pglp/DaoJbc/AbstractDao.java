@@ -1,4 +1,4 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.DaoJbc;
 import java.sql.Connection;
 import java.util.ArrayList;
 
