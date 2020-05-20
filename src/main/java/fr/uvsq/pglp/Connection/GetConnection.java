@@ -1,11 +1,11 @@
-package fr.uvsq.pglp;
+package fr.uvsq.pglp.Connection;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
-public class GetConnection {
+public abstract class GetConnection {
     /**
      * Création de la base de données.
      * @return Le connecteur a la base
@@ -13,7 +13,7 @@ public class GetConnection {
      */
     public static Connection createBase() {
         try {
-            return DriverManager.getConnection("jdbc:derby:FigureDB;create=true");
+            return DriverManager.getConnection("jdbc:derby:BDfigure;create=true");
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
